@@ -1,9 +1,9 @@
 import React from "react";
 
 import "../styles/Intro.css";
-import Typist from "react-typist";
-import "react-typist/dist/Typist.css";
-import EmailRoundedIcon from "@material-ui/icons/EmailRounded";
+
+
+import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import FadeInSection from "./FadeInSection";
 import FractalTree from "./FractalTree";
 
@@ -26,13 +26,11 @@ class Intro extends React.Component {
     return (
       <div id="intro">
         <FractalTree></FractalTree>
-        <Typist avgTypingDelay={120}>
-          <span className="intro-title">
+        <span className="intro-title">
             {"hi, "}
             <span className="intro-name">{"gazi"}</span>
             {" here."}
           </span>
-        </Typist>
         <FadeInSection>
           <div className="intro-subtitle">I create stuff sometimes.</div>
           <div className="intro-desc">
