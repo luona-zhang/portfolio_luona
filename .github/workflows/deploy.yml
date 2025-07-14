@@ -21,6 +21,7 @@ jobs:
 
     - name: Install dependencies
       run: |
+        rm -rf node_modules package-lock.json # Clean up old dependencies
         npm install --legacy-peer-deps # Install and update lock file
 
     - name: Update browserslist database
