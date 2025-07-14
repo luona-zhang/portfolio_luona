@@ -23,6 +23,7 @@ jobs:
 
     - name: Build React app
       run: |
+        npm install caniuse-lite --legacy-peer-deps
         npx update-browserslist-db@latest
         npm run build # Build the React application
 
