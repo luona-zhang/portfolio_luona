@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
+
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 import FadeInSection from "./FadeInSection";
 
 const isHorizontal = window.innerWidth < 600;
@@ -65,20 +65,9 @@ function a11yProps(index) {
   }
 }
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: "theme.palette.background.paper",
-    display: "flex",
-    height: 300
-  },
-  tabs: {
-    borderRight: `1px solid ${theme.palette.divider}`
-  }
-}));
+
 
 const JobList = () => {
-  const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   const experienceItems = {
@@ -138,13 +127,23 @@ const JobList = () => {
   };
 
   return (
-    <div className={classes.root}>
+    <div
+      sx={{
+        flexGrow: 1,
+        backgroundColor: "background.paper",
+        display: "flex",
+        height: 300,
+      }}
+    >
       <Tabs
         orientation={!isHorizontal ? "vertical" : null}
         variant={isHorizontal ? "fullWidth" : "scrollable"}
         value={value}
         onChange={handleChange}
-        className={classes.tabs}
+        sx={{
+          borderRight: !isHorizontal ? 1 : 0,
+          borderColor: 'divider',
+        }}
       >
         {Object.keys(experienceItems).map((key, i) => (
           <Tab label={isHorizontal ? `0${i}.` : key} {...a11yProps(i)} />
