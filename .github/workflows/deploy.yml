@@ -17,19 +17,21 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '18' # Specify the Node.js version
+        cache: 'npm' # Cache npm dependencies for faster builds
 
     - name: Install dependencies
-      run: npm install --legacy-peer-deps # Install project dependencies
+      run: |
+        npm ci --legacy-peer-deps # Use npm ci for faster, more reliable installs
 
     - name: Build React app
       run: |
-        npm install caniuse-lite --legacy-peer-deps
-        npx update-browserslist-db@latest
-        npm run build # Build the React application
+        CI=false npm run build # CI=false to ignore warnings as errors
+      env:
+        PUBLIC_URL: / # Set the PUBLIC_URL for proper asset paths
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }} # GitHub token for authentication
         publish_dir: ./build # Directory to publish
-        cname: luona-zhang.github.io # Your custom domain if you have one, otherwise remove this line
+        cname: jarin.me # Your custom domain (should match your CNAME file)
